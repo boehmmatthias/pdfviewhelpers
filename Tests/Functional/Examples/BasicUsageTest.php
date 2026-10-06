@@ -49,7 +49,7 @@ class BasicUsageTest extends AbstractFunctionalTestCase
     public function testBasicUsage(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/BasicUsage.pdf');
-        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/BasicUsage.html'));
+        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/BasicUsage.html')));
         $pdf = $this->parseContent($output);
         $text = $pdf->getText();
 

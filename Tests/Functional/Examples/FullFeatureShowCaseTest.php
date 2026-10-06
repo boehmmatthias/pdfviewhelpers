@@ -49,7 +49,7 @@ class FullFeatureShowCaseTest extends AbstractFunctionalTestCase
     public function testFullFeatureShowCase(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/FullFeatureShowCase.pdf');
-        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/FullFeatureShowCase.html'));
+        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/FullFeatureShowCase.html')));
         $pdf = $this->parseContent($output);
         $pages = $pdf->getPages();
 

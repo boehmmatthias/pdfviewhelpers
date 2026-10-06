@@ -49,7 +49,7 @@ class ExtendExistingPDFsTest extends AbstractFunctionalTestCase
     public function testExtendExistingPDFs(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/ExtendExistingPDFs.pdf');
-        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/ExtendExistingPDFs.html'));
+        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/ExtendExistingPDFs.html')));
         $pdf = $this->parseContent($output);
         $text = $pdf->getText();
 

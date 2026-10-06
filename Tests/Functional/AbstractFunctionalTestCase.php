@@ -143,14 +143,6 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase
         return $longLoremIpsumText;
     }
 
-    /**
-     * tc-lib-pdf stores the current time as modification date of every page, the dates are replaced by a fixed date of the same length
-     */
-    protected function normalizePDF(string $pdf): string
-    {
-        return (string) preg_replace('/\/LastModified \(D:\d{14}/', '/LastModified (D:20130328000000', $pdf);
-    }
-
     protected function validatePDF(string $pdf): void
     {
         $tempFilePath = GeneralUtility::tempnam('pdfviewhelpers-pdf-validation-temp-file', '.pdf');

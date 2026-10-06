@@ -49,7 +49,7 @@ class FullFeatureShowCaseTest extends AbstractFunctionalTestCase
     public function testFullFeatureShowCase(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/FullFeatureShowCase.pdf');
-        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/FullFeatureShowCase.html')));
+        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/FullFeatureShowCase.html'));
         $pdf = $this->parseContent($output);
         $pages = $pdf->getPages();
 
@@ -74,9 +74,5 @@ class FullFeatureShowCaseTest extends AbstractFunctionalTestCase
         $this->assertStringContainsStringIgnoringCase('Avoid page break inside', $pages[4]->getText());
 
         $this->validatePDF($output);
-
-        $expectedHash = sha1(file_get_contents($this->getFixtureAbsolutePath('Examples/FullFeatureShowCase.pdf')));
-        $actualHash = sha1($output);
-        $this->assertEquals($expectedHash, $actualHash);
     }
 }

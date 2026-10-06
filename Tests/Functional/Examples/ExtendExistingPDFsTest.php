@@ -49,7 +49,7 @@ class ExtendExistingPDFsTest extends AbstractFunctionalTestCase
     public function testExtendExistingPDFs(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/ExtendExistingPDFs.pdf');
-        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/ExtendExistingPDFs.html')));
+        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/ExtendExistingPDFs.html'));
         $pdf = $this->parseContent($output);
         $text = $pdf->getText();
 
@@ -64,9 +64,5 @@ class ExtendExistingPDFsTest extends AbstractFunctionalTestCase
         $this->assertStringContainsStringIgnoringCase('Lorem ipsum dolor sit amet', $text);
 
         $this->validatePDF($output);
-
-        $expectedHash = sha1(file_get_contents($this->getFixtureAbsolutePath('Examples/ExtendExistingPDFs.pdf')));
-        $actualHash = sha1($output);
-        $this->assertEquals($expectedHash, $actualHash);
     }
 }

@@ -41,7 +41,7 @@ class TestBasePDF extends BasePDF
     {
         parent::__construct($unit, $subsetFonts, $mode);
 
-        //overwrite creation time and file id in order to be able to compare file contents
+        //overwrite creation time and file id in order to get reproducible documents, e.g. to compare them
         $time = (int) strtotime('28 mar 2013 UTC');
         $this->setDocCreationDate($time);
         $this->setDocModificationDate($time);

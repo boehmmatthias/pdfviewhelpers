@@ -17,24 +17,6 @@ jobs:
           - { TYPO3_VERSION: 14, PHP_VERSION: 8.4 }
           - { TYPO3_VERSION: 14, PHP_VERSION: 8.5 }
 
-    env:
-      # The example tests compare the generated PDFs byte by byte, which requires exact library versions
-      PDF_LIBRARIES: >-
-        tecnickcom/tc-lib-barcode:2.16.6
-        tecnickcom/tc-lib-color:3.0.9
-        tecnickcom/tc-lib-file:3.9.6
-        tecnickcom/tc-lib-pdf:8.78.2
-        tecnickcom/tc-lib-pdf-encrypt:2.11.6
-        tecnickcom/tc-lib-pdf-filter:2.11.6
-        tecnickcom/tc-lib-pdf-font:4.5.1
-        tecnickcom/tc-lib-pdf-graph:2.18.4
-        tecnickcom/tc-lib-pdf-image:3.14.6
-        tecnickcom/tc-lib-pdf-page:4.16.7
-        tecnickcom/tc-lib-pdf-parser:3.16.4
-        tecnickcom/tc-lib-pdf-sign:2.0.7
-        tecnickcom/tc-lib-unicode:3.1.0
-        tecnickcom/tc-lib-unicode-data:3.0.11
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -62,9 +44,6 @@ jobs:
       - name: Install TYPO3 core
         env: ${{ matrix.env }}
         run: composer require typo3/cms-core="^${TYPO3_VERSION}"
-
-      - name: Install specific tc-lib-pdf versions for reproducible tests
-        run: composer update -W $(printf -- '--with %s ' ${PDF_LIBRARIES})
 
       - name: PHPCS
         run: .Build/bin/phpcs -n --standard=PSR12 Classes/

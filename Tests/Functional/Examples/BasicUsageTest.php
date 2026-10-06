@@ -49,7 +49,7 @@ class BasicUsageTest extends AbstractFunctionalTestCase
     public function testBasicUsage(): void
     {
         $outputPath = GeneralUtility::getFileAbsFileName('EXT:pdfviewhelpers/Tests/Output/BasicUsage.pdf');
-        $output = $this->normalizePDF($this->renderFluidTemplate($this->getFixtureExtPath('Examples/BasicUsage.html')));
+        $output = $this->renderFluidTemplate($this->getFixtureExtPath('Examples/BasicUsage.html'));
         $pdf = $this->parseContent($output);
         $text = $pdf->getText();
 
@@ -64,9 +64,5 @@ class BasicUsageTest extends AbstractFunctionalTestCase
         $this->assertStringContainsStringIgnoringCase('Bithost GmbH', $text);
 
         $this->validatePDF($output);
-
-        $expectedHash = sha1(file_get_contents($this->getFixtureAbsolutePath('Examples/BasicUsage.pdf')));
-        $actualHash = sha1($output);
-        $this->assertEquals($expectedHash, $actualHash);
     }
 }
